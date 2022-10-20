@@ -42,11 +42,12 @@ bool IHC_inserir_produto(produtos *catalogo, int ultimo_produto){
         puts("Limite maximo da Lista atingido...\nRetornando para a pagina Inicial");
         return false;
     }else{
+        fflush(stdin);
         puts("Insira o Nome do seu Produto, maximo de 15 caracteres: ");
-        scanf("%s", &nome);
+        gets(nome);
         fflush(stdin);
         puts("Insira a Descricao do seu Produto, maximo de 30 caracteres: ");
-        fgets(desc, MAXIMO_DESCRICAO, stdin);
+        gets(desc);
         fflush(stdin);
         puts("Qual Categoria seu Produto sera?\n(0) Eletrodomesticos\n(1) Ferramentas\n(2) Vestuario"); 
         scanf("%d", &cat);
@@ -54,8 +55,7 @@ bool IHC_inserir_produto(produtos *catalogo, int ultimo_produto){
         puts("Realizando Pedido ...");
         Sleep(1000);
         strcpy(catalogo[ultimo_produto].nome, nome); strcpy(catalogo[ultimo_produto].descricao, desc);catalogo[ultimo_produto].estoque = 0;   
-        strcpy(catalogo[ultimo_produto].cat, categor[cat]);
-        
+        strcpy(catalogo[ultimo_produto].cat, categor[cat]);    
     }
     return true;
 }
@@ -99,8 +99,7 @@ bool IHC_atualizar_produto(produtos *catalogo, int total){
     }else{
         catalogo[cod - 1].estoque += qtd;
     } 
-    return true;
-   
+    return true;  
 }
 
 bool IHC_aumentar_produto(produtos *catalogo, int total){
@@ -149,17 +148,14 @@ int main() {
         catalogo[i].codigo = i+1;
         }
 
-        puts("Escolha uma Ação: ");
+        puts("Escolha uma Acao: ");
         puts("(1) Listar todos os produtos\n(2) Insirir um novo produto\n(3) Remover um Produto existente\n(4) Atualizar o estoque\n(5) Aumentar o estoque de algum produto\n(6) Diminuir o estoque de algum produto");
         scanf("%d", &a);
 
-
         switch (a){
-
         case 1:
             listar_catalogo(catalogo, num);
             break;
-        
         case 2:
             resultado = IHC_inserir_produto(catalogo, num);
             if(resultado == true){
@@ -204,8 +200,7 @@ int main() {
             break;
         default:
             puts("Erro na Escolha das ações, digite um numero valido");
-            break;
-            
+            break;     
         }
     }
 }
